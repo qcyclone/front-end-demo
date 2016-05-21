@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>复选框全选反选</title>
+<style type="text/css">
+#main{
+	width:150px;
+	height:300px;
+	margin:auto;
+	}
+dl{
+	border:1px solid #666;
+	border-radius:5px;  //圆角
+	}
+dt{
+	padding-bottom:10px;
+	border-bottom:1px solid #666;
+	}
+dd{
+	padding:3px;
+	margin:15px;
+	}
+a:hover{
+	color:red;
+	}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var fan=document.getElementsByTagName('a')[0];
+	var list = document.getElementsByTagName('input');
+	function checkAll(){
+		var flag = 1;
+		for(var i = 1; i<list.length;i++){
+		    if(list[i].checked==false)
+				flag = 0;
+		}
+		if(flag == 1)	
+			list[0].checked = true;
+		else
+			list[0].checked = false;
+		if(flag==1)	
+			return  1;
+		return 0;
+	}
+	fan.onclick = function(){
+		for(var i = 1;i<list.length;i++){
+			list[i].checked = !list[i].checked;		
+		}
+		checkAll();
+	}
+	var quan = document.getElementById('checkAll');
+	quan.onclick = function(){
+		if(checkAll()){  //如果已经全选
+			for(var i = 0;i<list.length;i++){
+			list[i].checked = false;
+			}
+			return ;
+		}
+		for(var i = 1;i<list.length;i++){
+			list[i].checked = true;		
+		}
+		checkAll();
+	}
+	for(var i = 1;i<list.length;i++){
+		list[i].onclick = function(){
+			checkAll();
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+<div id='main'>
+<dl>
+	<dt>
+        <input type="checkbox" id="checkAll"/><label>全选</label>
+        <a href="#">反选</a>
+    </dt>
+    <dd>
+        <input type="checkbox"/><label>选项（一）</label>
+        <input type="checkbox"/><label>选项（二）</label>
+        <input type="checkbox"/><label>选项（三）</label>
+        <input type="checkbox"/><label>选项（四）</label>
+        <input type="checkbox"/><label>选项（五）</label>
+    </dd>
+</dl>
+</div>
+</body>
+</html>
